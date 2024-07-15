@@ -1,0 +1,58 @@
+{
+  "name": "@e2e/typechain",
+  "version": "1.0.0",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./messagelib": {
+      "types": "./dist/messagelib/messagelib.d.ts",
+      "import": "./dist/messagelib/messagelib.mjs",
+      "require": "./dist/messagelib/messagelib.cjs"
+    },
+    "./oapp": {
+      "types": "./dist/oapp/oapp.d.ts",
+      "import": "./dist/oapp/oapp.mjs",
+      "require": "./dist/oapp/oapp.cjs"
+    },
+    "./protocol": {
+      "types": "./dist/protocol/protocol.d.ts",
+      "import": "./dist/protocol/protocol.mjs",
+      "require": "./dist/protocol/protocol.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "$npm_execpath run typechain && tsc && rollup -c",
+    "clean": "rm -rf src/*",
+    "typechain": "$npm_execpath run typechain-messagelib && $npm_execpath run typechain-oapp && $npm_execpath run typechain-protocol",
+    "typechain-messagelib": "typechain --target ethers-v5 --out-dir src/messagelib './node_modules/@layerzerolabs/lz-evm-messagelib-v2/artifacts/contracts/**/*.json'",
+    "typechain-oapp": "typechain --target ethers-v5 --out-dir src/oapp './node_modules/@layerzerolabs/lz-evm-oapp-v2/artifacts/contracts/**/*.json'",
+    "typechain-protocol": "typechain --target ethers-v5 --out-dir src/protocol './node_modules/@layerzerolabs/lz-evm-protocol-v2/artifacts/contracts/**/*.json'"
+  },
+  "dependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@layerzerolabs/lz-evm-messagelib-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-oapp-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.28",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@typechain/ethers-v5": "file:../../lib/TypeChain/packages/target-ethers-v5",
+    "@types/debug": "^4.1.5",
+    "ethers": "5.7.2",
+    "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typechain": "file:../../lib/TypeChain/packages/typechain",
+    "typescript": "^5.5.3"
+  }
+}

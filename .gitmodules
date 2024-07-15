@@ -1,0 +1,4 @@
+[submodule "lib/TypeChain"]
+	path = lib/TypeChain
+	url = git@github.com:masa-matt/TypeChain.git
+	branch = export-all-types

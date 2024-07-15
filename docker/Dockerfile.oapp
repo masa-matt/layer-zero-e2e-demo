@@ -1,0 +1,2 @@
+FROM layer-zero-e2e-base
+CMD pnpm --filter @e2e/oapp run deploy && pnpm --filter @e2e/oapp run wire

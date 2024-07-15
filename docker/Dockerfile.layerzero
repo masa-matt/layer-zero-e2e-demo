@@ -1,0 +1,2 @@
+FROM layer-zero-e2e-base
+CMD pnpm --filter @e2e/layerzero run deploy

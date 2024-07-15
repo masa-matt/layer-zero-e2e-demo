@@ -1,0 +1,3 @@
+FROM layer-zero-e2e-base
+RUN pnpm --filter @e2e/dvn build
+CMD pnpm --filter @e2e/dvn start

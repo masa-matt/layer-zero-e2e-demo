@@ -1,0 +1,48 @@
+{
+  "name": "@e2e/utils",
+  "version": "1.0.0",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./config": {
+      "types": "./dist/config/config.d.ts",
+      "import": "./dist/config/config.mjs",
+      "require": "./dist/config/config.cjs"
+    },
+    "./read": {
+      "types": "./dist/read/read.d.ts",
+      "import": "./dist/read/read.mjs",
+      "require": "./dist/read/read.cjs"
+    },
+    "./write": {
+      "types": "./dist/write/write.d.ts",
+      "import": "./dist/write/write.mjs",
+      "require": "./dist/write/write.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc && rollup -c"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "ethers": "5.7.2",
+    "hardhat": "^2.22.6",
+    "hardhat-deploy": "^0.12.1",
+    "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-typescript2": "^0.36.0"
+  }
+}

@@ -1,0 +1,14 @@
+**/tsconfig.build.tsbuildinfo
+**/artifacts/**
+**/build/**
+**/cache/**
+**/dist/**
+**/node_modules/**
+**/src/typechain-types/**
+packages/typechain/src/**
+!packages/typechain/src/index.ts
+
+deployments/**
+pnpm-lock.yaml
+**/pnpm-lock.yaml
+**/.DS_Store

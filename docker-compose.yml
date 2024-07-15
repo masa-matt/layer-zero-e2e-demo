@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  sepolia:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.anvil
+    ports:
+      - "8545:8545"
+    networks:
+      - intranet
+  bcs:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.anvil
+    ports:
+      - "8546:8545"
+    networks:
+      - intranet
+  layerzero:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.layerzero
+    volumes:
+      - ./deployments:/app/packages/layerzero/deployments
+    depends_on:
+      - sepolia
+      - bcs
+    networks:
+      - intranet
+  oapp:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.oapp
+    volumes:
+      - ./deployments:/app/packages/oapp/deployments
+    depends_on:
+      layerzero:
+        condition: service_completed_successfully
+    networks:
+      - intranet
+  executor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.executor
+    volumes:
+      - ./deployments:/app/packages/executor/deployments
+    depends_on:
+      layerzero:
+        condition: service_completed_successfully
+    environment:
+      - ROLE=executor
+    networks:
+      - intranet
+  committer:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.executor
+    volumes:
+      - ./deployments:/app/packages/executor/deployments
+    depends_on:
+      layerzero:
+        condition: service_completed_successfully
+    environment:
+      - ROLE=committer
+    networks:
+      - intranet
+  dvn:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dvn
+    volumes:
+      - ./deployments:/app/packages/dvn/deployments
+    depends_on:
+      layerzero:
+        condition: service_completed_successfully
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    driver: bridge

@@ -1,0 +1,28 @@
+{
+  "name": "@e2e/layerzero",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "$npm_execpath run deploy-sepolia && $npm_execpath run deploy-bcs",
+    "deploy-sepolia": "hardhat deploy --tags LayerZero --network sepolia",
+    "deploy-bcs": "hardhat deploy --tags LayerZero --network bcs"
+  },
+  "dependencies": {
+    "@e2e/typechain": "workspace:^",
+    "@e2e/utils": "workspace:^",
+    "@layerzerolabs/lz-definitions": "^2.3.28",
+    "@layerzerolabs/lz-evm-messagelib-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-oapp-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.28",
+    "@layerzerolabs/toolbox-hardhat": "^0.2.35",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@types/node": "^20.14.9",
+    "dotenv": "^16.4.5",
+    "ethers": "5.7.2",
+    "hardhat": "^2.22.6",
+    "hardhat-contract-sizer": "^2.10.0",
+    "hardhat-deploy": "^0.12.1",
+    "ts-node": "^10.9.2"
+  }
+}

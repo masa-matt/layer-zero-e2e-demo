@@ -1,0 +1,47 @@
+{
+  "name": "@e2e/oapp",
+  "version": "1.0.0",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "types": "./dist/typechain-types/index.d.ts",
+      "import": "./dist/typechain-types/index.mjs",
+      "require": "./dist/typechain-types/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/typechain-types/index.cjs",
+  "types": "./dist/typechain-types/index.d.ts",
+  "files": [
+    "dist/typechain-types/**/*"
+  ],
+  "scripts": {
+    "compile": "hardhat clean && hardhat compile",
+    "build": "$npm_execpath run compile && tsc",
+    "deploy": "$npm_execpath run deploy-sepolia && $npm_execpath run deploy-bcs",
+    "deploy-sepolia": "hardhat deploy --tags OFT --network sepolia",
+    "deploy-bcs": "hardhat deploy --tags OFT --network bcs",
+    "wire": "hardhat lz:oapp:wire --ci --signer 8 --oapp-config layerzero.oft.config.ts"
+  },
+  "dependencies": {
+    "@e2e/typechain": "workspace:^",
+    "@e2e/utils": "workspace:^",
+    "@layerzerolabs/lz-definitions": "^2.3.28",
+    "@layerzerolabs/lz-evm-messagelib-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-oapp-v2": "^2.3.28",
+    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.28",
+    "@layerzerolabs/toolbox-hardhat": "^0.2.35",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/node": "^20.14.9",
+    "dotenv": "^16.4.5",
+    "ethers": "5.7.2",
+    "hardhat": "^2.22.6",
+    "hardhat-contract-sizer": "^2.10.0",
+    "hardhat-deploy": "^0.12.1",
+    "ts-node": "^10.9.2"
+  }
+}
