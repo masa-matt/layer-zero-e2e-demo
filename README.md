@@ -30,7 +30,9 @@ The demo OApp supports L1 lock → L2 mint and L2 burn → L1 unlock messaging u
 ## Installation
 
 ``` shell
+$ git submodule update --init --recursive
 $ pnpm install
+$ pnpm build
 $ pnpm build-image
 ```
 
